@@ -1,0 +1,13 @@
+{
+  "name": "tte-simulator",
+  "version": "1.0.0",
+  "description": "TTE Simulator Desktop App",
+  "main": "main.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^41.0.4"
+  }
+}
