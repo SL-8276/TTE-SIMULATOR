@@ -4,21 +4,15 @@ export const views = [
     mnemonic: "Plax",
     view_name: "Parasternal Long Axis",
     category: "Parasternal",
-    probe_position_image: "/assets/images/Plax.png",
-    echo_video: "/assets/videos/Plax.mp4",
-    probe_orientation: "Marker toward right shoulder",
-    intercostal_space: "Left parasternal, typically 3rd-4th intercostal space",
+    position: "parasternal",
+    image: "/assets/images/Plax.jpg",
+    video: "/assets/videos/plax.mp4",
+    probe_orientation: "index marker pointing towards the right shoulder (11 o'clock)",
+    intercostal_space: "in the 3rd or 4th intercostal space, at the left parasternal border",
     patient_position: "Left lateral decubitus",
     description:
-      "Standard parasternal long-axis view showing the left ventricle, left atrium, mitral valve, aortic valve, and proximal ascending aorta.",
-    structures_visible: [
-      "Left ventricle",
-      "Left atrium",
-      "Mitral valve",
-      "Aortic valve",
-      "LVOT",
-      "Ascending aorta"
-    ],
+      "The PLAX view shows the left ventricle, left atrium, mitral valve, aortic valve, LVOT, and aorta.",
+    structures_visible: ["LV", "LA", "MV", "AV", "LVOT", "Aorta"],
     tags: []
   },
   {
@@ -26,19 +20,15 @@ export const views = [
     mnemonic: "PlaxRVin",
     view_name: "Parasternal Long Axis - RV Inflow",
     category: "Parasternal",
-    probe_position_image: "/assets/images/PlaxRVin.png",
-    echo_video: "/assets/videos/PlaxRVin.mp4",
-    probe_orientation: "From PLAX with medial/inferior tilt to RV inflow",
-    intercostal_space: "Left parasternal",
+    position: "parasternal",
+    image: "/assets/images/PlaxRVin.jpg",
+    video: "/assets/videos/PlaxRVin.mp4",
+    probe_orientation: "index marker pointing towards the right shoulder (11 o'clock)",
+    intercostal_space: "In the 3rd or 4th intercostal space, at the left parasternal border",
     patient_position: "Left lateral decubitus",
     description:
-      "Modified parasternal long-axis RV inflow view emphasizing the right atrium, tricuspid valve, and right ventricle inflow.",
-    structures_visible: [
-      "Right atrium",
-      "Tricuspid valve",
-      "Right ventricle",
-      "RV inflow tract"
-    ],
+      "Modified parasternal long-axis RV inflow view emphasizing the right atrium, tricuspid valve, and right ventricular inflow tract.",
+    structures_visible: ["RA", "TV", "RV", "RV inflow"],
     tags: []
   },
   {
@@ -46,19 +36,15 @@ export const views = [
     mnemonic: "PlaxRVout",
     view_name: "Parasternal Long Axis - RV Outflow",
     category: "Parasternal",
-    probe_position_image: "/assets/images/PlaxRVout.png",
-    echo_video: "/assets/videos/PlaxRVout.mp4",
-    probe_orientation: "From PLAX with superior/lateral angulation to RVOT",
-    intercostal_space: "Left parasternal",
+    position: "parasternal",
+    image: "/assets/images/PlaxRVout.jpg",
+    video: "/assets/videos/PlaxRVout.mp4",
+    probe_orientation: "index marker pointing towards the right shoulder (11 o'clock)",
+    intercostal_space: "in the 3rd or 4th intercostal space, at the left parasternal border",
     patient_position: "Left lateral decubitus",
     description:
-      "Modified parasternal long-axis RV outflow view showing the right ventricular outflow tract and pulmonary valve region.",
-    structures_visible: [
-      "Right ventricle",
-      "RVOT",
-      "Pulmonary valve",
-      "Main pulmonary artery"
-    ],
+      "Modified parasternal long-axis RV outflow view showing the RVOT and pulmonary valve region.",
+    structures_visible: ["RV", "RVOT", "PV", "MPA"],
     tags: []
   },
   {
@@ -66,20 +52,15 @@ export const views = [
     mnemonic: "PsaxOut",
     view_name: "Parasternal Short Axis - Aortic Valve (Base)",
     category: "Parasternal",
-    probe_position_image: "/assets/images/PsaxOut.png",
-    echo_video: "/assets/videos/PsaxOut.mp4",
-    probe_orientation: "Rotate probe 90° clockwise from PLAX",
-    intercostal_space: "Left parasternal, base level",
+    position: "parasternal",
+    image: "/assets/images/PsaxOut.jpg",
+    video: "/assets/videos/PsaxOut.mp4",
+    probe_orientation: "index marker pointing towards the left shoulder (2 o'clock)",
+    intercostal_space: "in the 3rd or 4th intercostal space, at the left parasternal border",
     patient_position: "Left lateral decubitus",
     description:
-      "Parasternal short-axis base view centered on the aortic valve, often showing right heart inflow/outflow relationships.",
-    structures_visible: [
-      "Aortic valve",
-      "Tricuspid valve",
-      "Right atrium",
-      "RVOT",
-      "Pulmonary valve"
-    ],
+      "Parasternal short-axis base view centered on the aortic valve, showing right heart inflow/outflow relationships.",
+    structures_visible: ["AV", "TV", "RA", "RVOT", "PV"],
     tags: []
   },
   {
@@ -87,17 +68,14 @@ export const views = [
     mnemonic: "PsaxMV",
     view_name: "Parasternal Short Axis - Mitral Valve",
     category: "Parasternal",
-    probe_position_image: "/assets/images/PsaxMV.png",
-    echo_video: "/assets/videos/PsaxMV.mp4",
-    probe_orientation: "Short-axis sweep slightly below base",
-    intercostal_space: "Left parasternal",
+    position: "parasternal",
+    image: "/assets/images/PsaxMV.jpg",
+    video: "/assets/videos/PsaxMV.mp4",
+    probe_orientation: "index marker pointing towards the left shoulder (2 o'clock)",
+    intercostal_space: "in the 3rd or 4th intercostal space, at the left parasternal border",
     patient_position: "Left lateral decubitus",
-    description:
-      "Parasternal short-axis view at the mitral valve level, useful for assessing mitral valve morphology and LV shape.",
-    structures_visible: [
-      "Mitral valve",
-      "Left ventricle"
-    ],
+    description: "Parasternal short-axis view at the mitral valve level.",
+    structures_visible: ["MV", "LV"],
     tags: []
   },
   {
@@ -105,19 +83,15 @@ export const views = [
     mnemonic: "PsaxMid",
     view_name: "Parasternal Short Axis - Papillary Muscle",
     category: "Parasternal",
-    probe_position_image: "/assets/images/PsaxMid.png",
-    echo_video: "/assets/videos/PsaxMid.mp4",
-    probe_orientation: "Short-axis sweep to mid-LV level",
-    intercostal_space: "Left parasternal",
+    position: "parasternal",
+    image: "/assets/images/PsaxMid.jpg",
+    video: "/assets/videos/PsaxMid.mp4",
+    probe_orientation: "index marker pointing towards the left shoulder (2 o'clock)",
+    intercostal_space: "in the 3rd or 4th intercostal space, at the left parasternal border",
     patient_position: "Left lateral decubitus",
     description:
-      "Mid-ventricular parasternal short-axis view showing circular LV cavity and papillary muscles.",
-    structures_visible: [
-      "Left ventricle",
-      "Papillary muscles",
-      "Interventricular septum",
-      "Inferolateral wall"
-    ],
+      "Mid-ventricular parasternal short-axis view showing the LV cavity and papillary muscles.",
+    structures_visible: ["LV", "Papillary muscles", "IVS"],
     tags: []
   },
   {
@@ -125,17 +99,14 @@ export const views = [
     mnemonic: "PsaxApex",
     view_name: "Parasternal Short Axis - Apex",
     category: "Parasternal",
-    probe_position_image: "/assets/images/PsaxApex.png",
-    echo_video: "/assets/videos/PsaxApex.mp4",
-    probe_orientation: "Short-axis sweep toward apex",
-    intercostal_space: "Left parasternal",
+    position: "parasternal",
+    image: "/assets/images/PsaxApex.jpg",
+    video: "/assets/videos/PsaxApex.mp4",
+    probe_orientation: "index marker pointing towards the left shoulder (2 o'clock)",
+    intercostal_space: "in the 3rd or 4th intercostal space, at the left parasternal border",
     patient_position: "Left lateral decubitus",
-    description:
-      "Parasternal short-axis apical view, showing the distal LV cavity near the apex.",
-    structures_visible: [
-      "Apical left ventricle",
-      "LV cavity"
-    ],
+    description: "Parasternal short-axis apical view showing the distal LV cavity.",
+    structures_visible: ["Apical LV", "LV cavity"],
     tags: []
   },
   {
@@ -143,19 +114,15 @@ export const views = [
     mnemonic: "PpaBV",
     view_name: "Parasternal SA - Pulmonary Artery Bifurcation",
     category: "Parasternal",
-    probe_position_image: "/assets/images/PpaBV.png",
-    echo_video: "/assets/videos/PpaBV.mp4",
-    probe_orientation: "Short-axis superior sweep to pulmonary artery bifurcation",
-    intercostal_space: "Left parasternal, high short-axis plane",
+    position: "parasternal",
+    image: "/assets/images/PpaBV.jpg",
+    video: "/assets/videos/PpaBV.mp4",
+    probe_orientation: "index marker pointing towards the left shoulder (1-2 o'clock)",
+    intercostal_space: "in the 3rd or 4th intercostal space, at the left parasternal border",
     patient_position: "Left lateral decubitus",
     description:
-      "Parasternal short-axis plane highlighting the main pulmonary artery and its bifurcation.",
-    structures_visible: [
-      "Main pulmonary artery",
-      "Pulmonary artery bifurcation",
-      "Right pulmonary artery",
-      "Left pulmonary artery"
-    ],
+      "Parasternal short-axis plane highlighting the main pulmonary artery and bifurcation.",
+    structures_visible: ["MPA", "RPA", "LPA"],
     tags: []
   },
   {
@@ -163,21 +130,15 @@ export const views = [
     mnemonic: "Apical4",
     view_name: "Apical 4-Chamber",
     category: "Apical",
-    probe_position_image: "/assets/images/Apical4.png",
-    echo_video: "/assets/videos/Apical4.mp4",
-    probe_orientation: "Marker toward left side, from cardiac apex",
-    intercostal_space: "Apical impulse region",
+    position: "apical",
+    image: "/assets/images/Apical4.jpg",
+    video: "/assets/videos/Apical4.mp4",
+    probe_orientation: "index marker pointing towards the left (3 o'clock)",
+    intercostal_space: "in the 4th or 5th intercostal space, in the midclavicular line or at the point of apical pulsation",
     patient_position: "Left lateral decubitus",
     description:
-      "Standard apical four-chamber view showing both atria and both ventricles in one plane.",
-    structures_visible: [
-      "Left atrium",
-      "Right atrium",
-      "Left ventricle",
-      "Right ventricle",
-      "Mitral valve",
-      "Tricuspid valve"
-    ],
+      "Standard apical four-chamber view showing both atria and both ventricles.",
+    structures_visible: ["LA", "RA", "LV", "RV", "MV", "TV"],
     tags: []
   },
   {
@@ -185,21 +146,14 @@ export const views = [
     mnemonic: "Apical5",
     view_name: "Apical 5-Chamber",
     category: "Apical",
-    probe_position_image: "/assets/images/Apical5.png",
-    echo_video: "/assets/videos/Apical5.mp4",
-    probe_orientation: "From Apical 4 with anterior tilt",
-    intercostal_space: "Apical impulse region",
+    position: "apical",
+    image: "/assets/images/Apical5.jpg",
+    video: "/assets/videos/Apical5.mp4",
+    probe_orientation: "index marker pointing towards the left (3 o'clock)",
+    intercostal_space: "in the 4th or 5th intercostal space, in the midclavicular line or at the point of apical pulsation",
     patient_position: "Left lateral decubitus",
-    description:
-      "Apical five-chamber view extends the four-chamber plane to include the left ventricular outflow tract and aortic valve.",
-    structures_visible: [
-      "Left atrium",
-      "Right atrium",
-      "Left ventricle",
-      "Right ventricle",
-      "LVOT",
-      "Aortic valve"
-    ],
+    description: "Apical five-chamber view including the LVOT and aortic valve.",
+    structures_visible: ["LA", "RA", "LV", "RV", "LVOT", "AV"],
     tags: []
   },
   {
@@ -207,20 +161,14 @@ export const views = [
     mnemonic: "Apical2",
     view_name: "Apical 2-Chamber",
     category: "Apical",
-    probe_position_image: "/assets/images/Apical2.png",
-    echo_video: "/assets/videos/Apical2.mp4",
-    probe_orientation: "Rotate from Apical 4 toward 2-chamber plane",
-    intercostal_space: "Apical impulse region",
+    position: "apical",
+    image: "/assets/images/Apical2.jpg",
+    video: "/assets/videos/Apical2.mp4",
+    probe_orientation: "index marker now pointing towards the left axilla (1 o'clock)",
+    intercostal_space: "in the 4th or 5th intercostal space, in the midclavicular line or at the point of apical pulsation",
     patient_position: "Left lateral decubitus",
-    description:
-      "Apical two-chamber view demonstrating the left atrium and left ventricle without the right-sided chambers.",
-    structures_visible: [
-      "Left atrium",
-      "Left ventricle",
-      "Anterior wall",
-      "Inferior wall",
-      "Mitral valve"
-    ],
+    description: "Apical two-chamber view demonstrating left atrium and left ventricle.",
+    structures_visible: ["LA", "LV", "Anterior wall", "Inferior wall", "MV"],
     tags: []
   },
   {
@@ -228,20 +176,14 @@ export const views = [
     mnemonic: "ApicalLAX",
     view_name: "Apical Long Axis (3-Chamber)",
     category: "Apical",
-    probe_position_image: "/assets/images/ApicalLAX.png",
-    echo_video: "/assets/videos/ApicalLAX.mp4",
-    probe_orientation: "Rotate from apical views into long-axis plane",
-    intercostal_space: "Apical impulse region",
+    position: "apical",
+    image: "/assets/images/ApicalLAX.jpg",
+    video: "/assets/videos/ApicalLAX.mp4",
+    probe_orientation: "index marker now pointing towards the right shoulder (11 o'clock)",
+    intercostal_space: "in the 4th or 5th intercostal space, in the midclavicular line or at the point of apical pulsation",
     patient_position: "Left lateral decubitus",
-    description:
-      "Apical long-axis view, also called 3-chamber, showing LV, LA, LVOT, and aortic valve.",
-    structures_visible: [
-      "Left ventricle",
-      "Left atrium",
-      "Mitral valve",
-      "LVOT",
-      "Aortic valve"
-    ],
+    description: "Apical long-axis view showing LV, LA, LVOT, and aortic valve.",
+    structures_visible: ["LV", "LA", "MV", "LVOT", "AV"],
     tags: []
   },
   {
@@ -249,21 +191,14 @@ export const views = [
     mnemonic: "Sub4",
     view_name: "Subcostal 4-Chamber",
     category: "Subcostal",
-    probe_position_image: "/assets/images/Sub4.png",
-    echo_video: "/assets/videos/Sub4.mp4",
-    probe_orientation: "Marker toward patient left, under xiphoid",
-    intercostal_space: "Subxiphoid/subcostal window",
+    position: "subcostal",
+    image: "/assets/images/Sub4.jpg",
+    video: "/assets/videos/Sub4.mp4",
+    probe_orientation: "index marker pointing towards the left (3 o'clock)",
+    intercostal_space: "in the subxiphoid region of the abdomen",
     patient_position: "Supine",
-    description:
-      "Subcostal four-chamber view obtained beneath the xiphoid, useful when apical/parasternal windows are limited.",
-    structures_visible: [
-      "Left atrium",
-      "Right atrium",
-      "Left ventricle",
-      "Right ventricle",
-      "Interatrial septum",
-      "Interventricular septum"
-    ],
+    description: "Subcostal four-chamber view obtained beneath the xiphoid.",
+    structures_visible: ["LA", "RA", "LV", "RV", "IAS", "IVS"],
     tags: []
   },
   {
@@ -271,19 +206,14 @@ export const views = [
     mnemonic: "SubOut",
     view_name: "Subcostal RV Outflow",
     category: "Subcostal",
-    probe_position_image: "/assets/images/SubOut.png",
-    echo_video: "/assets/videos/SubOut.mp4",
-    probe_orientation: "Subcostal angulation toward RVOT",
-    intercostal_space: "Subxiphoid/subcostal window",
+    position: "subcostal",
+    image: "/assets/images/SubOut.jpg",
+    video: "/assets/videos/SubOut.mp4",
+    probe_orientation: "index marker now pointing towards the head (12 o'clock)",
+    intercostal_space: "in the subxiphoid region of the abdomen",
     patient_position: "Supine",
-    description:
-      "Subcostal RV outflow view emphasizing the right ventricular outflow tract and pulmonary valve region.",
-    structures_visible: [
-      "Right ventricle",
-      "RVOT",
-      "Pulmonary valve",
-      "Main pulmonary artery"
-    ],
+    description: "Subcostal RV outflow view emphasizing RVOT and pulmonary valve region.",
+    structures_visible: ["RV", "RVOT", "PV", "MPA"],
     tags: []
   },
   {
@@ -291,17 +221,14 @@ export const views = [
     mnemonic: "SubMV",
     view_name: "Subcostal Short Axis - Mitral Valve",
     category: "Subcostal",
-    probe_position_image: "/assets/images/SubMV.png",
-    echo_video: "/assets/videos/SubMV.mp4",
-    probe_orientation: "Subcostal short-axis sweep at mitral level",
-    intercostal_space: "Subxiphoid/subcostal window",
+    position: "subcostal",
+    image: "/assets/images/SubMV.jpg",
+    video: "/assets/videos/SubMV.mp4",
+    probe_orientation: "index marker pointing towards the head (12 o'clock)",
+    intercostal_space: "in the subxiphoid region of the abdomen",
     patient_position: "Supine",
-    description:
-      "Subcostal short-axis view at the mitral valve level.",
-    structures_visible: [
-      "Mitral valve",
-      "Left ventricle"
-    ],
+    description: "Subcostal short-axis view at the mitral valve level.",
+    structures_visible: ["MV", "LV"],
     tags: []
   },
   {
@@ -309,17 +236,14 @@ export const views = [
     mnemonic: "SubMid",
     view_name: "Subcostal Short Axis - Papillary Muscle",
     category: "Subcostal",
-    probe_position_image: "/assets/images/SubMid.png",
-    echo_video: "/assets/videos/SubMid.mp4",
-    probe_orientation: "Subcostal short-axis mid-LV plane",
-    intercostal_space: "Subxiphoid/subcostal window",
+    position: "subcostal",
+    image: "/assets/images/SubMid.jpg",
+    video: "/assets/videos/SubMid.mp4",
+    probe_orientation: "index marker now pointing towards the head (12 o'clock)",
+    intercostal_space: "in the subxiphoid region of the abdomen",
     patient_position: "Supine",
-    description:
-      "Subcostal short-axis view at the papillary muscle level.",
-    structures_visible: [
-      "Left ventricle",
-      "Papillary muscles"
-    ],
+    description: "Subcostal short-axis view at the papillary muscle level.",
+    structures_visible: ["LV", "Papillary muscles"],
     tags: []
   },
   {
@@ -327,17 +251,14 @@ export const views = [
     mnemonic: "SubApex",
     view_name: "Subcostal Short Axis - Apex",
     category: "Subcostal",
-    probe_position_image: "/assets/images/SubApex.png",
-    echo_video: "/assets/videos/SubApex.mp4",
-    probe_orientation: "Subcostal short-axis sweep toward apex",
-    intercostal_space: "Subxiphoid/subcostal window",
+    position: "subcostal",
+    image: "/assets/images/SubApex.jpg",
+    video: "/assets/videos/SubApex.mp4",
+    probe_orientation: "index marker now pointing towards the head (12 o'clock)",
+    intercostal_space: "in the subxiphoid region of the abdomen",
     patient_position: "Supine",
-    description:
-      "Subcostal short-axis apical view showing the distal LV cavity.",
-    structures_visible: [
-      "Apical left ventricle",
-      "LV cavity"
-    ],
+    description: "Subcostal short-axis apical view showing distal LV cavity.",
+    structures_visible: ["Apical LV", "LV cavity"],
     tags: []
   },
   {
@@ -345,18 +266,14 @@ export const views = [
     mnemonic: "SubIVC",
     view_name: "Subcostal Inferior Vena Cava",
     category: "Subcostal",
-    probe_position_image: "/assets/images/SubIVC.png",
-    echo_video: "/assets/videos/SubIVC.mp4",
-    probe_orientation: "Probe angled toward IVC from subcostal window",
-    intercostal_space: "Subxiphoid/subcostal window",
+    position: "subcostal",
+    image: "/assets/images/SubIVC.jpg",
+    video: "/assets/videos/SubIVC.mp4",
+    probe_orientation: "index marker pointing towards the head (12 o'clock)",
+    intercostal_space: "in the subxiphoid region of the abdomen",
     patient_position: "Supine",
-    description:
-      "Subcostal view of the inferior vena cava entering the right atrium, useful for volume assessment.",
-    structures_visible: [
-      "Inferior vena cava",
-      "Right atrium",
-      "Hepatic veins"
-    ],
+    description: "Subcostal view of the inferior vena cava entering the right atrium.",
+    structures_visible: ["IVC", "RA", "Hepatic veins"],
     tags: []
   },
   {
@@ -364,19 +281,15 @@ export const views = [
     mnemonic: "SupLAX",
     view_name: "Suprasternal Long Axis (Aortic Arch)",
     category: "Suprasternal",
-    probe_position_image: "/assets/images/SupLAX.png",
-    echo_video: "/assets/videos/SupLAX.mp4",
-    probe_orientation: "Probe in suprasternal notch toward aortic arch",
-    intercostal_space: "Suprasternal notch",
+    position: "suprasternal",
+    image: "/assets/images/SupLAX.jpg",
+    video: "/assets/videos/SupLAX.mp4",
+    probe_orientation: "index marker pointing towards the left supraclavicular notch (1 o'clock)",
+    intercostal_space: "in the suprasternal notch",
     patient_position: "Supine with neck extended if tolerated",
     description:
       "Suprasternal long-axis view demonstrating the aortic arch and great vessel relationships.",
-    structures_visible: [
-      "Aortic arch",
-      "Ascending aorta",
-      "Descending aorta",
-      "Arch branches"
-    ],
+    structures_visible: ["Aortic arch", "Ascending aorta", "Descending aorta"],
     tags: []
   },
   {
@@ -384,18 +297,15 @@ export const views = [
     mnemonic: "RgtPara",
     view_name: "Right Parasternal Long Axis (Ascending Aorta)",
     category: "Right Parasternal",
-    probe_position_image: "/assets/images/RgtPara.png",
-    echo_video: "/assets/videos/RgtPara.mp4",
-    probe_orientation: "Right parasternal window toward ascending aorta",
-    intercostal_space: "Right parasternal",
+    position: "right parasternal",
+    image: "/assets/images/RgtPara.jpg",
+    video: "/assets/videos/RgtPara.mp4",
+    probe_orientation: "index marker pointing towards the left clavicle (1 o'clock)",
+    intercostal_space: "in the 2nd or 3rd intercostal space, at the right parasternal border",
     patient_position: "Supine or slight left lateral",
     description:
-      "Right parasternal long-axis view often used to better visualize the ascending aorta.",
-    structures_visible: [
-      "Ascending aorta",
-      "Aortic valve",
-      "LVOT"
-    ],
+      "Right parasternal long-axis view used to better visualize the ascending aorta.",
+    structures_visible: ["Ascending aorta", "AV", "LVOT"],
     tags: []
   }
 ];
