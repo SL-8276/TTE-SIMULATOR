@@ -422,6 +422,12 @@ body {
   cursor: pointer;
 }
 
+.tte-ref-secondary-btn-success {
+  background: #1bb56d;
+  border-color: #1bb56d;
+  color: #ffffff;
+}
+
 .tte-ref-coords-row {
   display: grid;
   grid-template-columns: 1fr 1fr;

@@ -14,6 +14,7 @@ export default function Calibration({ setMode }) {
   const initialCalibration = getCalibration(views[0]?.id ?? 1);
   const [probeReading, setProbeReading] = useState(null);
   const [status, setStatus] = useState("");
+  const [clickedCalibrationViews, setClickedCalibrationViews] = useState({});
 
   const currentView = useMemo(() => {
     return views.find((view) => view.id === selectedViewId) ?? views[0];
@@ -22,6 +23,8 @@ export default function Calibration({ setMode }) {
   const currentCalibration = useMemo(() => {
     return getCalibration(selectedViewId);
   }, [selectedViewId, status]);
+
+  const isCurrentViewCalibrated = !!clickedCalibrationViews[selectedViewId];
 
   useEffect(() => {
     const unsubscribe =
@@ -67,6 +70,10 @@ export default function Calibration({ setMode }) {
       qw: probeReading.qw
     });
 
+    setClickedCalibrationViews((current) => ({
+      ...current,
+      [currentView.id]: true
+    }));
     setStatus("Calibration saved from the latest live probe reading.");
   }
 
@@ -183,7 +190,10 @@ export default function Calibration({ setMode }) {
           </div>
 
           <div className="tte-ref-bottom-row tte-ref-bottom-row-between">
-            <button className="tte-ref-secondary-btn" onClick={handleSave}>
+            <button
+              className={`tte-ref-secondary-btn${isCurrentViewCalibrated ? " tte-ref-secondary-btn-success" : ""}`}
+              onClick={handleSave}
+            >
               Set
             </button>
             <button className="tte-ref-home-btn" onClick={() => setMode("home")}>

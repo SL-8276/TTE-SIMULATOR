@@ -15,5 +15,20 @@ contextBridge.exposeInMainWorld("probeInput", {
     return () => {
       ipcRenderer.removeListener("probe-reading", handler);
     };
+  },
+  onStatus(callback) {
+    if (typeof callback !== "function") {
+      return () => {};
+    }
+
+    const handler = (_event, payload) => {
+      callback(payload);
+    };
+
+    ipcRenderer.on("probe-status", handler);
+
+    return () => {
+      ipcRenderer.removeListener("probe-status", handler);
+    };
   }
 });
