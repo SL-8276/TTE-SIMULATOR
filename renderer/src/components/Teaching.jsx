@@ -1,60 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { views } from "../../../data/tteData.js";
-
-function MediaImage({ src, alt }) {
-  const [error, setError] = useState(false);
-
-  useEffect(() => {
-    setError(false);
-  }, [src]);
-
-  if (!src || error) {
-    return (
-      <div className="tte-ref-media-placeholder">
-        <div className="tte-ref-media-placeholder-title">Probe Position Image</div>
-      </div>
-    );
-  }
-
-  return (
-    <img
-      src={src}
-      alt={alt}
-      className="tte-media-fit"
-      onError={() => setError(true)}
-    />
-  );
-}
-
-function MediaVideo({ src }) {
-  const [error, setError] = useState(false);
-
-  useEffect(() => {
-    setError(false);
-  }, [src]);
-
-  if (!src || error) {
-    return (
-      <div className="tte-ref-media-placeholder tte-ref-video-placeholder">
-        <div className="tte-ref-media-placeholder-title">Echocardiography Video</div>
-      </div>
-    );
-  }
-
-  return (
-    <video
-      key={src}
-      className="tte-media-fit tte-video-bg"
-      src={src}
-      controls
-      loop
-      autoPlay
-      muted
-      playsInline
-      onError={() => setError(true)}
-    />
-  );
-}
+import { MediaImage, MediaVideo } from "./ReferenceMedia.jsx";
 
 export default function Teaching({ setMode }) {
   const [search, setSearch] = useState("");
