@@ -1,30 +1,48 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { views } from "../../../data/tteData.js";
 import { MediaImage, MediaVideo } from "./ReferenceMedia.jsx";
-import { getCalibration, saveCalibration } from "../lib/probeMatching.js";
+import {
+  extractQuaternion,
+  formatQuaternion,
+  getCalibration,
+  normalizeProbeReading,
+  saveCalibration
+} from "../lib/probeMatching.js";
 
 export default function Calibration({ setMode }) {
   const [selectedViewId, setSelectedViewId] = useState(views[0]?.id ?? 1);
   const initialCalibration = getCalibration(views[0]?.id ?? 1);
-  const [coords, setCoords] = useState(
-    initialCalibration
-      ? { x: initialCalibration.x ?? "", y: initialCalibration.y ?? "" }
-      : { x: "", y: "" }
-  );
-  const [tag, setTag] = useState(initialCalibration?.tag ?? "");
+  const [probeReading, setProbeReading] = useState(null);
   const [status, setStatus] = useState("");
 
   const currentView = useMemo(() => {
     return views.find((view) => view.id === selectedViewId) ?? views[0];
   }, [selectedViewId]);
 
+  const currentCalibration = useMemo(() => {
+    return getCalibration(selectedViewId);
+  }, [selectedViewId, status]);
+
+  useEffect(() => {
+    const unsubscribe =
+      window.probeInput && typeof window.probeInput.onReading === "function"
+        ? window.probeInput.onReading((reading) => {
+            setProbeReading(normalizeProbeReading(reading));
+          })
+        : null;
+
+    if (!unsubscribe) {
+      setStatus("Waiting for live probe data in calibration mode.");
+    }
+
+    return () => {
+      if (typeof unsubscribe === "function") {
+        unsubscribe();
+      }
+    };
+  }, []);
+
   function loadViewCalibration(viewId) {
-    const calibration = getCalibration(viewId);
-    setCoords({
-      x: calibration?.x ?? "",
-      y: calibration?.y ?? ""
-    });
-    setTag(calibration?.tag ?? "");
     setStatus("");
   }
 
@@ -34,31 +52,22 @@ export default function Calibration({ setMode }) {
     loadViewCalibration(nextViewId);
   }
 
-  function handleCoordinateChange(axis, value) {
-    setCoords((current) => ({
-      ...current,
-      [axis]: value
-    }));
-  }
-
   function handleSave() {
     if (!currentView) return;
-
-    const x = Number(coords.x);
-    const y = Number(coords.y);
-
-    if (!Number.isFinite(x) || !Number.isFinite(y)) {
-      setStatus("Enter valid X and Y coordinates before saving calibration.");
+    if (!probeReading) {
+      setStatus("No live probe reading available to save.");
       return;
     }
 
     saveCalibration(currentView.id, {
-      x,
-      y,
-      tag: tag.trim()
+      tag: probeReading.rawTag,
+      qx: probeReading.qx,
+      qy: probeReading.qy,
+      qz: probeReading.qz,
+      qw: probeReading.qw
     });
 
-    setStatus("Calibration saved for this view.");
+    setStatus("Calibration saved from the latest live probe reading.");
   }
 
   return (
@@ -67,7 +76,7 @@ export default function Calibration({ setMode }) {
         <div className="tte-ref-brand-wrap">
           <div className="tte-ref-brand-title">Calibration Mode</div>
           <div className="tte-ref-brand-subtitle">
-            Save the reference coordinates and tag for each TTE view
+            Save the live probe tag and quaternion values for each TTE view
           </div>
         </div>
       </div>
@@ -75,7 +84,7 @@ export default function Calibration({ setMode }) {
       <div className="tte-ref-content">
         <div className="tte-ref-controls-row">
           <div className="tte-ref-status-box">
-            {status || "Choose a view and enter the calibration values you want training mode to compare against."}
+            {status || "Choose a view, position the probe, and save the current live reading for training mode."}
           </div>
 
           <select
@@ -120,37 +129,54 @@ export default function Calibration({ setMode }) {
 
             <div className="tte-ref-details-grid">
               <div className="tte-ref-detail-block">
-                <div className="tte-ref-detail-label">TAG</div>
-                <input
-                  className="tte-ref-detail-input"
-                  type="text"
-                  placeholder="Probe tag"
-                  value={tag}
-                  onChange={(e) => setTag(e.target.value)}
-                />
+                <div className="tte-ref-detail-label">LIVE PROBE TAG</div>
+                <div className="tte-ref-detail-value">
+                  {probeReading?.rawTag || "No live tag received yet"}
+                </div>
               </div>
 
+              <div className="tte-ref-detail-block">
+                <div className="tte-ref-detail-label">LIVE QUATERNION</div>
+                <div className="tte-ref-detail-value">
+                  {probeReading
+                    ? formatQuaternion(extractQuaternion(probeReading))
+                    : "No live quaternion received yet"}
+                </div>
+              </div>
+            </div>
+
+            <div className="tte-ref-details-grid">
+              <div className="tte-ref-detail-block">
+                <div className="tte-ref-detail-label">SAVED CALIBRATION TAG</div>
+                <div className="tte-ref-detail-value">
+                  {currentCalibration?.tag || "No saved calibration for this view"}
+                </div>
+              </div>
+
+              <div className="tte-ref-detail-block">
+                <div className="tte-ref-detail-label">SAVED QUATERNION</div>
+                <div className="tte-ref-detail-value">
+                  {currentCalibration
+                    ? formatQuaternion(extractQuaternion(currentCalibration))
+                    : "No saved quaternion for this view"}
+                </div>
+              </div>
+            </div>
+
+            <div className="tte-ref-details-grid">
               <div className="tte-ref-coords-row">
                 <div className="tte-ref-detail-block">
-                  <div className="tte-ref-detail-label">X COORDINATE</div>
-                  <input
-                    className="tte-ref-detail-input"
-                    type="number"
-                    placeholder="X"
-                    value={coords.x}
-                    onChange={(e) => handleCoordinateChange("x", e.target.value)}
-                  />
+                  <div className="tte-ref-detail-label">MATCH INPUT SOURCE</div>
+                  <div className="tte-ref-detail-value">
+                    Tag plus qx, qy, qz, qw from the hardware probe
+                  </div>
                 </div>
 
                 <div className="tte-ref-detail-block">
-                  <div className="tte-ref-detail-label">Y COORDINATE</div>
-                  <input
-                    className="tte-ref-detail-input"
-                    type="number"
-                    placeholder="Y"
-                    value={coords.y}
-                    onChange={(e) => handleCoordinateChange("y", e.target.value)}
-                  />
+                  <div className="tte-ref-detail-label">SAVE ACTION</div>
+                  <div className="tte-ref-detail-value">
+                    Press Set to store the latest live reading for this selected view
+                  </div>
                 </div>
               </div>
             </div>

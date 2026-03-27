@@ -428,22 +428,6 @@ body {
   gap: 16px;
 }
 
-.tte-ref-detail-input {
-  width: 100%;
-  height: 42px;
-  border: 1px solid #dbe7ef;
-  border-radius: 10px;
-  padding: 0 12px;
-  outline: none;
-  color: #29485f;
-  font-size: 14px;
-  background: #ffffff;
-}
-
-.tte-ref-detail-input::placeholder {
-  color: #98aaba;
-}
-
 /* ---- small laptop safety ---- */
 
 @media (max-width: 1200px) {

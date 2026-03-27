@@ -23,7 +23,7 @@ export default function Home({ setMode }) {
 
           <button className="home-action-btn" onClick={() => setMode("calibration")}>
             <span className="home-action-title">Calibration Mode</span>
-            <span className="home-action-text">Tagging and coordinate capture</span>
+            <span className="home-action-text">Tag and quaternion capture</span>
           </button>
         </div>
       </div>

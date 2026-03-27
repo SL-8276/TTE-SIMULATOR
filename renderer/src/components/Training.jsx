@@ -1,7 +1,13 @@
 import { useEffect, useMemo, useState } from "react";
 import { views } from "../../../data/tteData.js";
 import { MediaImage, MediaVideo } from "./ReferenceMedia.jsx";
-import { findMatchingView, loadCalibrations } from "../lib/probeMatching.js";
+import {
+  extractQuaternion,
+  findMatchingView,
+  formatQuaternion,
+  loadCalibrations,
+  normalizeProbeReading
+} from "../lib/probeMatching.js";
 
 export default function Training({ setMode }) {
   const [probeReading, setProbeReading] = useState(null);
@@ -15,7 +21,8 @@ export default function Training({ setMode }) {
 
   useEffect(() => {
     function applyProbeReading(reading) {
-      setProbeReading(reading);
+      const normalized = normalizeProbeReading(reading);
+      setProbeReading(normalized);
 
       const calibrations = loadCalibrations();
       const match = findMatchingView(reading, calibrations, views);
@@ -29,7 +36,7 @@ export default function Training({ setMode }) {
 
       setMatchedViewId(null);
       setMatchedCalibration(null);
-      setStatus("No calibrated view matched the current probe coordinates and tag.");
+      setStatus("No calibrated view matched the current probe tag and quaternion.");
     }
 
     const unsubscribe =
@@ -52,12 +59,21 @@ export default function Training({ setMode }) {
     if (!probeReading) return "No probe data received yet";
 
     const parts = [];
-    if (probeReading.tag) parts.push(`Tag: ${probeReading.tag}`);
-    if (probeReading.x !== undefined && probeReading.y !== undefined) {
-      parts.push(`Coordinates: (${probeReading.x}, ${probeReading.y})`);
-    }
+    if (probeReading.rawTag) parts.push(`Tag: ${probeReading.rawTag}`);
+    const quaternionLabel = formatQuaternion(extractQuaternion(probeReading));
+    if (quaternionLabel) parts.push(quaternionLabel);
+    if (probeReading.button !== undefined) parts.push(`Button: ${probeReading.button}`);
+    if (probeReading.sequence !== undefined) parts.push(`Seq: ${probeReading.sequence}`);
     return parts.join(" | ") || "Probe data received";
   }, [probeReading]);
+
+  const savedCalibrationLabel = useMemo(() => {
+    if (!matchedCalibration) return status;
+
+    return `${status} Saved tag: ${matchedCalibration.tag || "None"} | ${formatQuaternion(
+      extractQuaternion(matchedCalibration)
+    )}`;
+  }, [matchedCalibration, status]);
 
   return (
     <div className="tte-ref-page">
@@ -120,9 +136,7 @@ export default function Training({ setMode }) {
               <div className="tte-ref-detail-block">
                 <div className="tte-ref-detail-label">MATCH STATUS</div>
                 <div className="tte-ref-detail-value">
-                  {currentView && matchedCalibration
-                    ? `${status} Saved tag: ${matchedCalibration.tag || "None"} | Saved coordinates: (${matchedCalibration.x}, ${matchedCalibration.y})`
-                    : status}
+                  {currentView && matchedCalibration ? savedCalibrationLabel : status}
                 </div>
               </div>
             </div>
