@@ -114,6 +114,26 @@ body {
   color: #5a7187;
 }
 
+.training-choice-shell {
+  height: min(560px, 84vh);
+  gap: 38px;
+}
+
+.training-choice-row {
+  max-width: 760px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.training-choice-btn {
+  max-width: none;
+}
+
+.training-choice-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
 /* ---------- TEACHING MODE ---------- */
 
 .tte-ref-page {
@@ -335,6 +355,174 @@ body {
   background: #ffffff;
 }
 
+.tte-hotspot-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #000000;
+}
+
+.tte-hotspot-stage.is-image {
+  background: #ffffff;
+}
+
+.tte-hotspot-media {
+  position: absolute;
+  display: block;
+  object-fit: fill;
+  background: #000000;
+}
+
+.tte-hotspot-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.tte-hotspot-dot {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.96);
+  border-radius: 50%;
+  background: #ffbf2f;
+  box-shadow: 0 0 0 3px rgba(7, 24, 38, 0.28), 0 8px 20px rgba(0, 0, 0, 0.32);
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  transition: transform 0.14s ease, border-color 0.14s ease, background 0.14s ease, box-shadow 0.14s ease;
+  pointer-events: auto;
+}
+
+.tte-hotspot-dot:hover,
+.tte-hotspot-dot:focus-visible,
+.tte-hotspot-dot.is-selected {
+  border-color: #ffffff;
+  background: #3d7cff;
+  box-shadow: 0 0 0 4px rgba(61, 124, 255, 0.28), 0 10px 24px rgba(0, 0, 0, 0.36);
+  outline: none;
+  transform: translate(-50%, -50%) scale(1.18);
+}
+
+.tte-hotspot-dot.is-correct {
+  background: #1bb56d;
+  box-shadow: 0 0 0 4px rgba(27, 181, 109, 0.32), 0 10px 24px rgba(0, 0, 0, 0.36);
+}
+
+.tte-hotspot-pulse {
+  position: absolute;
+  inset: -8px;
+  border: 1px solid rgba(255, 191, 47, 0.64);
+  border-radius: inherit;
+  animation: tte-hotspot-pulse 1.5s ease-out infinite;
+  pointer-events: none;
+}
+
+.tte-hotspot-dot.is-selected .tte-hotspot-pulse,
+.tte-hotspot-dot.is-correct .tte-hotspot-pulse {
+  border-color: rgba(255, 255, 255, 0.72);
+}
+
+.tte-hotspot-quiz {
+  position: absolute;
+  z-index: 8;
+  width: 216px;
+  min-height: 144px;
+  border: 1px solid rgba(215, 227, 236, 0.96);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.24);
+  padding: 11px;
+}
+
+.tte-hotspot-quiz-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 9px;
+}
+
+.tte-hotspot-quiz-title {
+  color: #245c74;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.tte-hotspot-quiz-close {
+  width: 24px;
+  height: 24px;
+  border: 1px solid #d8e6ef;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #587489;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.tte-hotspot-quiz-close:hover,
+.tte-hotspot-quiz-close:focus-visible {
+  border-color: #3d7cff;
+  color: #245c74;
+  outline: none;
+}
+
+.tte-hotspot-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.tte-hotspot-option {
+  min-width: 0;
+  min-height: 36px;
+  border: 2px solid #d8e6ef;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #29485f;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 700;
+  transition: border-color 0.14s ease, box-shadow 0.14s ease, background 0.14s ease;
+}
+
+.tte-hotspot-option:hover,
+.tte-hotspot-option:focus-visible {
+  border-color: #3d7cff;
+  box-shadow: 0 0 0 3px rgba(61, 124, 255, 0.12);
+  outline: none;
+}
+
+.tte-hotspot-option.is-correct {
+  border-color: #1bb56d;
+  background: #f0fff7;
+  box-shadow: 0 0 0 3px rgba(27, 181, 109, 0.16);
+  color: #126b43;
+}
+
+.tte-hotspot-option.is-wrong {
+  border-color: #df4e4e;
+  background: #fff5f5;
+  color: #913232;
+}
+
+@keyframes tte-hotspot-pulse {
+  0% {
+    opacity: 0.86;
+    transform: scale(0.72);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.45);
+  }
+}
+
 .tte-video-bg {
   background: #000000;
 }
@@ -391,6 +579,7 @@ body {
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  gap: 12px;
   padding: 0 26px 14px;
 }
 
@@ -426,6 +615,10 @@ body {
   background: #1bb56d;
   border-color: #1bb56d;
   color: #ffffff;
+}
+
+.training-empty-card {
+  grid-template-rows: 1fr;
 }
 
 .tte-ref-coords-row {
